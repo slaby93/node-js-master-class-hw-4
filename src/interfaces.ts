@@ -12,3 +12,8 @@ export interface RouteOutput {
 export interface Endpoint {
     [index: string]: RouteHandler
 }
+
+export interface Command {
+    key?: string | string[],
+    handler: (command: string, args: void | string[]) => void
+}

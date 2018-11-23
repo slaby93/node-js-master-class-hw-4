@@ -4,8 +4,8 @@ import Methods from '../consts/methods'
 import db from '../utils/db'
 import { checkToken } from '../utils/routes';
 
-const MENU_FOLDER = '/'
-const MENU_FILE = 'menu.json'
+export const MENU_FOLDER = '/'
+export const MENU_FILE = 'menu.json'
 
 const handler: Endpoint = {
   /**

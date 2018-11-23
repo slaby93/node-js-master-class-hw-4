@@ -1,5 +1,6 @@
 import * as readline from 'readline'
 import * as events from 'events'
+import commands from './commands'
 
 namespace Cli {
   class _events extends events { }
@@ -10,6 +11,19 @@ namespace Cli {
     prompt: '>'
   })
 
+  commands.forEach(({
+    key,
+    handler
+  }) => {
+    (Array.isArray(key) ? key : [key])
+      .forEach(key => {
+        channell.on(key, handler)
+      })
+  })
+
+
+  // Splits main command and all arguments as
+  // {command, arguments}
   const processInput = (input: string) => {
     channell.emit(input)
   }
