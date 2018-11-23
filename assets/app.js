@@ -15,7 +15,12 @@ function login() {
         window.location = '/dashboard'
       })
       .catch(error => {
-        console.log({ error })
+        request(`/api/token`, 'POST', { id: login, password })
+          .then(({ token }) => {
+            localStorage.setItem('token', token.token)
+            localStorage.setItem('userId', login)
+            window.location = '/dashboard'
+          })
       })
   }
 }
@@ -95,7 +100,7 @@ function accountSettings() {
 function dashboard() {
   const userId = localStorage.getItem('userId')
   const cart = document.getElementById('cart')
-  if(!cart) { return }
+  if (!cart) { return }
   const list = document.getElementById('availableItems')
   let cartItemsList = {}
   let itemsList = []
@@ -103,10 +108,10 @@ function dashboard() {
 
   const fetchOrderId = () => {
     request(`/api/order?id=${userId}`, 'GET')
-    .then((response) => {
-      orderId = response.order.id
-    })
-}
+      .then((response) => {
+        orderId = response.order.id
+      })
+  }
 
   const renderCart = () => {
     cart.innerHTML = ''
@@ -254,7 +259,7 @@ const request = (url, method, body) => new Promise((resolve, reject) => {
 
   fetch(url, {
     method,
-    body: body ? JSON.stringify({ ...body, id: userId }) : method === 'POST' ? JSON.stringify({ id: userId }) : undefined,
+    body: body ? JSON.stringify({ id: userId, ...body }) : method === 'POST' ? JSON.stringify({ id: userId }) : undefined,
     headers: {
       'Content-Type': 'application/json',
       'token': token
