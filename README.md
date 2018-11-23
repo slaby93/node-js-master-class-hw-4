@@ -1,13 +1,14 @@
 ### CLI
-menu - List all available products in menu
 
-order --recent - View all the recent orders in the system (orders placed in the last 24 hours)
-
-order --id \<order-id> -  Lookup the details of a specific order by order ID
-
-user --latest - View all the users who have signed up in the last 24 hour
-
-user --id \<user-id> - Lookup the details of a specific user by email address
+| Command  | Flag     | Argument                         | Description                                                |
+|----------|----------|----------------------------------|------------------------------------------------------------|
+| menu     | -none-   | -none-                           | Returns list of products available in db                   |
+| order    | --id     | string - id of requested order   | Returns Order                                              |
+| order    | --latest | -none-                           | Returns all Order that were created less then 24 hours ago |
+| user     | --email  | string - email of requested user | Returns user with given email address                      |
+| user     | --latest | -none-                           | Returns all users that were created less then 24 hours ago |
+| man/help | -none-   | -none-                           | List all possible commands                                 |
+| exit     | -none-   | -none-                           | Stops server and exit                                      |
 ### USER
 
 | Method   | Description               | Payload                                                            | Headers | Queryparam  | Outcome            | Authorization      |
