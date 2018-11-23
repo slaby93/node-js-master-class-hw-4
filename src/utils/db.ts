@@ -27,11 +27,15 @@ export default {
       logger.error({ error })
     }
   },
+  /**
+   * Load all files within given folder
+   */
   loadAll: async (folder: string): Promise<any> => {
     try {
       return await new Promise((resolve, reject) => {
         fs.readdir(`${DATA_FOLDER}/${folder}`, (error, data: string[]) => {
           if (error) { return reject(error) }
+
           const promiseArray = data.map((file: string) => {
             return new Promise((resolve, reject) => {
               fs.readFile(path.resolve(`${DATA_FOLDER}/${folder}/${file}`), { encoding: 'utf-8', flag: 'r' }, (error, data) => {
@@ -40,6 +44,7 @@ export default {
               })
             })
           })
+
           Promise.all(promiseArray)
             .then(files => resolve(files))
 

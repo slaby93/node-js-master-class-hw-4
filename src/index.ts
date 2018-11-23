@@ -8,6 +8,7 @@ const app = {
     // create and start server
     new Server()
       .start(config.PORT)
+    // Crate and start CLI instance
     cli.start()
   }
 }

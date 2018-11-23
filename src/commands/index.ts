@@ -5,6 +5,9 @@ import help from './help'
 import exit from './exit'
 import { Command } from '../interfaces';
 
+/**
+ * Aggregates all commands
+ */
 const commands: Command[] = [
   menu,
   order,

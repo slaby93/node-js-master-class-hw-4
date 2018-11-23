@@ -9,6 +9,8 @@
 | user     | --latest | -none-                           | Returns all users that were created less then 24 hours ago |
 | man/help | -none-   | -none-                           | List all possible commands                                 |
 | exit     | -none-   | -none-                           | Stops server and exit                                      |
+
+
 ### USER
 
 | Method   | Description               | Payload                                                            | Headers | Queryparam  | Outcome            | Authorization      |
