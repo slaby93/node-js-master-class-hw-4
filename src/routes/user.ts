@@ -55,11 +55,12 @@ const handler: Endpoint = {
             newUser.email = email
             newUser.address = address
             newUser.password = hashedPassword
+            newUser.craetedAt = Date.now()
             newUser.id = randomStringGenerator(20)
             await newUser.save()
 
             return { responseStatus: 200, response: newUser }
-        } catch {
+        } catch(error) {
             return { responseStatus: 500, response: { err: 'Error while creating user' } }
         }
     },

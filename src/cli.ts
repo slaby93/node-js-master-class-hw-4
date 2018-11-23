@@ -25,7 +25,14 @@ namespace Cli {
   // Splits main command and all arguments as
   // {command, arguments}
   const processInput = (input: string) => {
-    channell.emit(input)
+    const [command, ...args] = input.trim().split('--').map(i => {
+      const divided = i.trim().split(' ')
+      return {
+        flag: divided[0],
+        value: divided[1]
+      }
+    })
+    channell.emit(command.flag, args)
   }
 
   cliInterface.on('line', input => {

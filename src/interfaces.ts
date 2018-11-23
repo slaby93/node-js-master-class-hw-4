@@ -15,5 +15,6 @@ export interface Endpoint {
 
 export interface Command {
     key?: string | string[],
-    handler: (command: string, args: void | string[]) => void
+    handler: (args: { flag: string, value: any }[]) => any,
+    [index: string]: any,
 }

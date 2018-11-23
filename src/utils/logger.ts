@@ -1,8 +1,9 @@
 export default {
   log: (...args: any[]) => {
-    console.log('LOGGER:', ...args)
+    // console.log('LOGGER:', ...args)
   },
   error: (...args: any[]) => {
-    console.error('LOGGER:', ...args)
+    //@TODO: uncomment
+    // console.error('LOGGER:', ...args)
   }
 }
