@@ -57,10 +57,12 @@ const handler: Endpoint = {
             order.cart = cart
             order.userId = id
             order.id = randomStringGenerator(20)
+            order.createdAt = Date.now()
             await order.save()
             return { responseStatus: 200, response: { order } }
 
         } catch (error) {
+            console.log({ error })
             return { responseStatus: 500, response: { err: 'Error while creating order' } }
         }
     },

@@ -55,7 +55,7 @@ const handler: Endpoint = {
             newUser.email = email
             newUser.address = address
             newUser.password = hashedPassword
-            newUser.craetedAt = Date.now()
+            newUser.createdAt = Date.now()
             newUser.id = randomStringGenerator(20)
             await newUser.save()
 

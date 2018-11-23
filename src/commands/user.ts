@@ -20,7 +20,7 @@ const command: Command = {
     try {
       const users: User[] = await db.loadAll(User.FOLDER)
       const foundUser: User = users.filter(user => user.email === email)[0]
-      if(!foundUser) {
+      if (!foundUser) {
         return console.log('Can\'t find user with provided email!')
       }
       command.displayUser(foundUser)
@@ -30,9 +30,13 @@ const command: Command = {
     }
   },
   handleLatestFlag: async () => {
-    const users: User[] = await db.loadAll(User.FOLDER)
-    const wantedTimestamp = Date.now() - 1000 * 24 * 60 * 60
-    users.filter(user => user.createdAt > wantedTimestamp).forEach(user => command.displayUser(user))
+    try {
+      const users: User[] = await db.loadAll(User.FOLDER)
+      const wantedTimestamp = Date.now() - 1000 * 24 * 60 * 60
+      users.filter(user => user.createdAt > wantedTimestamp).forEach(user => command.displayUser(user))
+    } catch {
+      console.log('Error during listing users!')
+    }
   },
   displayUser: (user: User) => {
     console.log(`

@@ -1,11 +1,16 @@
 import menu from './menu'
-// import order from './order'
+import order from './order'
 import user from './user'
+import help from './help'
+import exit from './exit'
 import { Command } from '../interfaces';
 
 const commands: Command[] = [
   menu,
-  user
+  order,
+  user,
+  help,
+  exit
 ]
 
 export default commands

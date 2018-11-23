@@ -11,6 +11,7 @@ class Order {
   cart: ShoppingCart
   userId: string
   receivedPayment: boolean = false
+  createdAt: number
 
   save = async () => {
     const serializedCart = Order.serialize(this)
@@ -29,6 +30,7 @@ class Order {
     this.cart = deserializedOrder.cart
     this.userId = deserializedOrder.userId
     this.receivedPayment = deserializedOrder.receivedPayment
+    this.createdAt = deserializedOrder.createdAt
   }
 
   delete = async () => {
@@ -36,12 +38,13 @@ class Order {
   }
 
   private static serialize = (order: Order): string => {
-    const { id, userId, cart, receivedPayment } = order
+    const { id, userId, cart, receivedPayment, createdAt } = order
     return JSON.stringify({
       id,
       userId,
       cart: cart.id,
-      receivedPayment
+      receivedPayment,
+      createdAt
     })
   }
 
@@ -53,6 +56,7 @@ class Order {
     order.cart = new ShoppingCart()
     order.cart.userId = order.userId
     order.receivedPayment = parsedData.receivedPayment
+    order.createdAt = parsedData.createdAt
     await order.cart.load()
     return order
   }
